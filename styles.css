@@ -1,9 +1,11 @@
 .card {
+  min-width: 175.82px; /* Set minimum width */
+  min-height: 245.33px; /* Set minimum height */
   width: 71.5vw;
   height: 100vw;
   position: relative;
   overflow: hidden;
-  margin:8px;
+  margin: 8px;
   z-index: 10;
   touch-action: none;
   border-radius: 5%/3.5%;
@@ -19,36 +21,35 @@
   background-position: 50% 50%;
   transform-origin: center;
 }
-
 #loadMoreBtn {
   margin-top: 20px; /* Add some space between the button and the card container */
 }
 
 .card-container {
   display: grid;
-  grid-template-columns: repeat(4, 1fr); /* Always show 4 cards across */
+  grid-template-columns: repeat(auto-fit, minmax(175.82px, 1fr)); /* Adjust minimum width for the container */
   gap: 20px;
   padding: 20px;
   justify-content: center; /* Center the cards horizontally */
 }
 
-
 .card {
-  width: 100%;
+  width: 100%; /* Adjust card width based on the viewport */
   height: auto;
 }
 
 @media (max-width: 767px) {
   .card-container {
-      gap: 10px; /* Reduce gap to make cards overlap slightly */
+    gap: 10px; /* Reduce gap to make cards overlap slightly */
   }
 }
 
 @media (max-width: 479px) {
   .card-container {
-      gap: 5px; /* Further reduce gap for smaller screens */
+    gap: 5px; /* Further reduce gap for smaller screens */
   }
 }
+
 
 @media screen and (min-width: 800px) {
   .card {

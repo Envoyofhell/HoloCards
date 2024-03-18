@@ -1,6 +1,6 @@
 // Import cards data from cardsData.js
 import { cardsData } from './cardsData.js';
-
+import './cards.js';
 // Function to create a card element
 function createCardElement(cardData) {
     const cardElement = document.createElement('div');
