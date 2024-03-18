@@ -3,7 +3,7 @@
   height: 100vw;
   position: relative;
   overflow: hidden;
-  margin: 20px;
+  margin:8px;
   z-index: 10;
   touch-action: none;
   border-radius: 5%/3.5%;
@@ -20,6 +20,10 @@
   transform-origin: center;
 }
 
+#loadMoreBtn {
+  margin-top: 20px; /* Add some space between the button and the card container */
+}
+
 .card-container {
   display: grid;
   grid-template-columns: repeat(4, 1fr); /* Always show 4 cards across */
@@ -27,6 +31,7 @@
   padding: 20px;
   justify-content: center; /* Center the cards horizontally */
 }
+
 
 .card {
   width: 100%;
@@ -45,10 +50,10 @@
   }
 }
 
-@media screen and (min-width: 600px) {
+@media screen and (min-width: 800px) {
   .card {
-    width: clamp(12.9vw, 61vh, 18vw);
-    height: clamp(18vw, 85vh, 25.2vw);
+    width: clamp(21.5vw, 61vh, 18vw);
+    height: clamp(30vw, 85vh, 25.2vw);
   }
 }
 

@@ -12,36 +12,72 @@ function createCardElement(cardData) {
     return cardElement;
 }
 
-function arrangeCards() {
+function arrangeCards(cardsToShow) {
     const app = document.getElementById('app');
-    app.innerHTML = '';
+    app.innerHTML = ''; // Clear existing cards
 
-    cardsData.forEach(cardData => {
+    for (let i = 0; i < cardsToShow; i++) {
+        const cardData = cardsData[i];
         const cardElement = createCardElement(cardData);
         app.appendChild(cardElement);
-    });
+    }
 }
 
-arrangeCards();
+function adjustCardsLayout() {
+    const screenWidth = window.innerWidth;
+    let cardsToShow = 8; // Default number of cards to show
 
-$(document).ready(function() {
+    // Adjust number of cards based on screen width
+    if (screenWidth < 1200) {
+        cardsToShow = 6;
+    }
+    if (screenWidth < 992) {
+        cardsToShow = 4;
+    }
+    if (screenWidth < 768) {
+        cardsToShow = 3;
+    }
+    if (screenWidth < 576) {
+        cardsToShow = 2;
+    }
+    if (screenWidth < 400) {
+        cardsToShow = 1;
+    }
+
+    arrangeCards(cardsToShow);
+}
+
+// Load initial set of cards based on screen size
+adjustCardsLayout();
+
+// Update cards layout when window is resized
+window.addEventListener('resize', adjustCardsLayout);
+
+// Hover effect
+$(document).ready(function () {
     var $cards = $(".card");
 
-    $cards.on("mousemove", function(e) {
+    $cards.on("mousemove", function (e) {
         var $card = $(this);
         var l = e.offsetX;
         var t = e.offsetY;
         var h = $card.height();
         var w = $card.width();
-        var lp = Math.abs(Math.floor(100 / w * l)-100);
-        var tp = Math.abs(Math.floor(100 / h * t)-100);
+        var lp = Math.abs(Math.floor(100 / w * l) - 100);
+        var tp = Math.abs(Math.floor(100 / h * t) - 100);
         var bg = `background-position: ${lp}% ${tp}%;`
         var style = `.card.active:before { ${bg} }`
         $cards.removeClass("active");
         $card.addClass("active");
         $card.css("transform", "rotateX(0deg) rotateY(0deg)");
-    }).on("mouseout", function() {
+        // Remove transition during movement
+        $card.css("transition", "none");
+    }).on("mouseout", function () {
+        var $card = $(this);
         $cards.removeClass("active");
+        // Transition back to original position
+        $card.css("transition", "transform 0.5s ease");
+        $card.css("transform", "rotateX(0deg) rotateY(0deg)");
     });
 
     const onMove = (ev, el) => {
@@ -66,7 +102,7 @@ $(document).ready(function() {
     };
 
     // setup cards interaction
-    $cards.each(function(index, card) {
+    $cards.each(function (index, card) {
         card.addEventListener("mouseover", onHover);
         card.addEventListener("mouseout", onOut);
     });

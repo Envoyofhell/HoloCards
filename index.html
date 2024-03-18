@@ -15,8 +15,14 @@
   
   <main>
     <div id="app" class="card-container"></div>
-    <button id="loadMoreBtn">Load More</button>
+    <div id="loadMoreContainer">
+        <button id="loadMoreBtn">Load More</button>
+        <div id="endMessage"></div>
+    </div>
+</main>
+  
   </main>
+  
 
   <footer>
     <!-- Footer content -->
@@ -24,5 +30,40 @@
 
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> <!-- Include jQuery library -->
   <script src="cards.js" type="module"></script> <!-- Include your JavaScript file -->
+  <script>
+    $(document).ready(function() {
+      const cardsPerPage = 8;
+      let startIndex = 0;
+      let endIndex = startIndex + cardsPerPage;
+
+      const $app = $('#app');
+      const $loadMoreBtn = $('#loadMoreBtn');
+
+      // Function to load and display cards
+      function loadCards() {
+        for (let i = startIndex; i < Math.min(endIndex, cardsData.length); i++) {
+          const cardData = cardsData[i];
+          const cardElement = createCardElement(cardData);
+          $app.append(cardElement);
+        }
+
+        if (endIndex < cardsData.length) {
+          $loadMoreBtn.show();
+        } else {
+          $loadMoreBtn.hide();
+        }
+      }
+
+      // Function to handle "Load More" button click
+      $loadMoreBtn.on('click', function() {
+        startIndex = endIndex;
+        endIndex = startIndex + cardsPerPage;
+        loadCards();
+      });
+
+      // Initial load of cards
+      loadCards();
+    });
+  </script>
 </body>
 </html>
