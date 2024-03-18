@@ -1,8 +1,10 @@
 .card {
+  width: 21.5vw;
+  height: 30vw;
+  max-width: 351.64px; /* Set maximum width */
+  max-height: 490.66px; /* Set maximum height */
   min-width: 175.82px; /* Set minimum width */
   min-height: 245.33px; /* Set minimum height */
-  width: 71.5vw;
-  height: 100vw;
   position: relative;
   overflow: hidden;
   margin: 8px;
@@ -12,8 +14,6 @@
   transform: rotateX(0deg) rotateY(0deg);
   transition: transform 0.3s ease;
   box-shadow: -5px -5px 5px -5px var(--color1), 5px 5px 5px -5px var(--color2), -7px -7px 10px -5px transparent, 7px 7px 10px -5px transparent, 0 0 5px 0px rgba(255, 255, 255, 0), 0 55px 35px -20px rgba(0, 0, 0, 0.5);
-  transition: transform 0.5s ease, box-shadow 0.2s ease;
-  will-change: transform, filter;
   background-color: #040712;
   background-image: var(--front);
   background-size: cover;
@@ -24,40 +24,55 @@
 #loadMoreBtn {
   margin-top: 20px; /* Add some space between the button and the card container */
 }
-
 .card-container {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(175.82px, 1fr)); /* Adjust minimum width for the container */
-  gap: 20px;
-  padding: 20px;
-  justify-content: center; /* Center the cards horizontally */
+  grid-template-columns: repeat(4, minmax(175.82px, 1fr));
+  padding: 10px;
+  justify-content: center;
+  max-width: calc(175.82px * 4 + 30px); /* Maximum width for 4 cards in a row including gaps */
+  margin: auto; /* Center the cards */
+  gap: 10px; /* Ensure gap between cards */
 }
 
-.card {
-  width: 100%; /* Adjust card width based on the viewport */
-  height: auto;
-}
-
-@media (max-width: 767px) {
+@media (max-width: 1200px) {
   .card-container {
-    gap: 10px; /* Reduce gap to make cards overlap slightly */
+    grid-template-columns: repeat(auto-fit, minmax(175.82px, 1fr));
+  }
+}
+
+@media (max-width: 800px) {
+  .card-container {
+    grid-template-columns: repeat(auto-fit, minmax(175.82px, 1fr));
   }
 }
 
 @media (max-width: 479px) {
   .card-container {
-    gap: 5px; /* Further reduce gap for smaller screens */
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    gap: 10px; /* Add gap between cards */
+  }
+}
+
+/* Ensure maximum 4 cards in a row with spacing */
+@media (min-width: 720px) {
+  .card-container {
+    max-width: calc(351.64ppx * 4 + 30px); /* Maximum width for 4 cards in a row including gaps */
+    margin: auto; /* Center the cards */
   }
 }
 
 
-@media screen and (min-width: 800px) {
-  .card {
-    width: clamp(21.5vw, 61vh, 18vw);
-    height: clamp(30vw, 85vh, 25.2vw);
+/* Ensure maximum 4 cards in a row with spacing */
+@media (min-width: 804px) {
+  .card-container {
+    max-width: 1406px; /* Maximum width for 4 cards in a row */
+    margin: auto; /* Center the cards */
   }
 }
-
 .card:hover {
   box-shadow: -20px -20px 30px -25px var(--color1), 20px 20px 30px -25px var(--color2), -7px -7px 10px -5px var(--color1), 7px 7px 10px -5px var(--color2), 0 0 13px 4px rgba(255, 255, 255, 0.3), 0 55px 35px -20px rgba(0, 0, 0, 0.5);
 }
