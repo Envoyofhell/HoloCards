@@ -12,59 +12,60 @@ function createCardElement(cardData) {
     return cardElement;
 }
 
-function arrangeCards(cardsToShow) {
+function arrangeCards(startIndex, endIndex) {
     const app = document.getElementById('app');
-    app.innerHTML = ''; // Clear existing cards
 
-    for (let i = 0; i < cardsToShow; i++) {
+    for (let i = startIndex; i < endIndex; i++) {
         const cardData = cardsData[i];
         const cardElement = createCardElement(cardData);
         app.appendChild(cardElement);
     }
 }
 
-function adjustCardsLayout() {
-    const screenWidth = window.innerWidth;
-    let cardsToShow = 8; // Default number of cards to show
+const initialCardsToShow = 8;
+let currentCardIndex = 0;
 
-    // Adjust number of cards based on screen width
-    if (screenWidth < 1200) {
-        cardsToShow = 6;
-    }
-    if (screenWidth < 992) {
-        cardsToShow = 4;
-    }
-    if (screenWidth < 768) {
-        cardsToShow = 3;
-    }
-    if (screenWidth < 576) {
-        cardsToShow = 2;
-    }
-    if (screenWidth < 400) {
-        cardsToShow = 1;
-    }
+// Load initial set of cards
+arrangeCards(currentCardIndex, currentCardIndex + initialCardsToShow);
 
-    arrangeCards(cardsToShow);
+// Function to load more cards when the "Load More" button is clicked
+function loadMoreCards() {
+    const cardsToShow = 8;
+    currentCardIndex += cardsToShow;
+    arrangeCards(currentCardIndex, currentCardIndex + cardsToShow);
+    checkLoadMore(); // Check if there are still more cards to load
 }
 
-// Load initial set of cards based on screen size
-adjustCardsLayout();
+// Check if there are more cards to load and show the "Load More" button accordingly
+function checkLoadMore() {
+    const totalCards = $('.card').length;
+    if (currentCardIndex + initialCardsToShow < cardsData.length) {
+        $('#loadMoreBtn').show();
+        $('#endMessage').hide();
+    } else {
+        $('#loadMoreBtn').hide();
+        $('#endMessage').show();
+    }
+}
 
-// Update cards layout when window is resized
-window.addEventListener('resize', adjustCardsLayout);
+// Load more cards when the "Load More" button is clicked
+$('#loadMoreBtn').on('click', loadMoreCards);
+
+// After loading cards, check if there are more to load and show the "Load More" button accordingly
+checkLoadMore();
 
 // Hover effect
-$(document).ready(function () {
+$(document).ready(function() {
     var $cards = $(".card");
 
-    $cards.on("mousemove", function (e) {
+    $cards.on("mousemove", function(e) {
         var $card = $(this);
         var l = e.offsetX;
         var t = e.offsetY;
         var h = $card.height();
         var w = $card.width();
-        var lp = Math.abs(Math.floor(100 / w * l) - 100);
-        var tp = Math.abs(Math.floor(100 / h * t) - 100);
+        var lp = Math.abs(Math.floor(100 / w * l)-100);
+        var tp = Math.abs(Math.floor(100 / h * t)-100);
         var bg = `background-position: ${lp}% ${tp}%;`
         var style = `.card.active:before { ${bg} }`
         $cards.removeClass("active");
@@ -72,7 +73,7 @@ $(document).ready(function () {
         $card.css("transform", "rotateX(0deg) rotateY(0deg)");
         // Remove transition during movement
         $card.css("transition", "none");
-    }).on("mouseout", function () {
+    }).on("mouseout", function() {
         var $card = $(this);
         $cards.removeClass("active");
         // Transition back to original position
@@ -88,7 +89,7 @@ $(document).ready(function () {
         const cardX = left + offsetWidth / 2;
         const cardY = top + offsetHeight / 2;
 
-        const angle = 15;
+        const angle = 5;
         const rotX = (cardY - pageY) / angle;
         const rotY = (cardX - pageX) / -angle;
 
@@ -102,7 +103,7 @@ $(document).ready(function () {
     };
 
     // setup cards interaction
-    $cards.each(function (index, card) {
+    $cards.each(function(index, card) {
         card.addEventListener("mouseover", onHover);
         card.addEventListener("mouseout", onOut);
     });
