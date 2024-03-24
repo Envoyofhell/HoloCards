@@ -7,8 +7,11 @@ const description = "A portfolio of Holo cards designed";
 const sharedImage = "https://cdn.discordapp.com/attachments/1218278500516237352/1220075858107039816/og.png?ex=660d9f30&is=65fb2a30&hm=413dbab8bfc45b48ccfda834e6aa1bde2eb0cde46e524d0a66b577372561d7a7&";
 const ogTitle = "The Realm's Holo Cards";
 
-// Object containing header information
-const headerInfo = {
+// Set the page title
+document.title = ogTitle;
+
+// Export header information
+export const headerInfo = {
   meta: {
     //------- Base Meta Tags -------
     charset,
@@ -38,13 +41,13 @@ const headerInfo = {
       card: "summary_large_image"
     }
   },
-     //------- Links and Misc -------
+  //------- Links and Misc -------
   link: [
     { rel: "canonical", href: canonical },
-    { rel: "icon", href: "favicon.png" },
   ]
-  
-};document.addEventListener('DOMContentLoaded', function() {
+};
+document.addEventListener('DOMContentLoaded', function() {
     // Set the page title dynamically
     document.getElementById('pageTitle').innerText = headerInfo.meta.og.title;
   });
+  console.log(headerInfo)

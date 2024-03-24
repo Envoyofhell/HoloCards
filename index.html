@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <!-- Import header information -->
-  <script src="js/meta-data.js" type="module"></script>
+  <script src="../js/meta-data.js" type="module"></script>
   <script>
     // Function to dynamically create meta tags
     function createMetaTags() {
@@ -38,15 +38,22 @@
     document.write('<link rel="icon" href="' + headerInfo.link.find(link => link.rel === 'icon').href + '">');
     document.write(createMetaTags());
   </script>
+
 	<!-- favicons -->
-  <link rel="apple-touch-icon" sizes="180x180" href="img/favicons/apple-touch-icon.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="img/favicons/favicon-32x32.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="img/favicons/favicon-16x16.png">
-  <link rel="manifest" href="/site.webmanifest">
+   <link rel="apple-touch-icon" sizes="180x180" href="img/favicons/apple-touch-icon.png">
+   <link rel="icon" type="image/png" sizes="32x32" href="img/favicons/favicon-32x32.png">
+   <link rel="icon" type="image/png" sizes="16x16" href="img/favicons/favicon-16x16.png">
+   <link rel="manifest" href="img/favicons/site.webmanifest">
+   
 	<!-- styles -->
   <link rel="stylesheet" href="css/styles.css">
 </head>
-<body>
+<body><script type="module">
+  import { headerInfo } from '../js/meta-data.js';
+  document.addEventListener('DOMContentLoaded', function() {
+    document.title = headerInfo.meta.og.title;
+  });
+</script>
   <header>
     <h1 id="pageTitle"></h1> <!-- Dynamically populated title -->
   </header>

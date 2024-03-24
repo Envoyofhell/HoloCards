@@ -27,6 +27,7 @@ function createCardElement(cardData) {
 }
 
 
+
 // Function to handle "Load More" button click
 document.getElementById('loadMoreBtn').addEventListener('click', function() {
     currentPageIndex++; // Move to the next page
@@ -54,8 +55,8 @@ function applyAnimation(cardElement, cardData) {
         const movementY = mouseY - prevY;
 
         // Minimum movement amount and movement speed
-        const minMovement = 10;
-        const speed = 0.1;
+        const minMovement = 20;
+        const speed = 0.3;
 
         if (!isMoving && Math.abs(movementX) > minMovement) {
             prevX = mouseX;
@@ -83,7 +84,8 @@ function applyAnimation(cardElement, cardData) {
         const totalBrightness = Math.min(tiltBrightness + movementBrightness, 1); // Combine brightness factors
 
         cardElement.style.transform = `rotateX(${rotX}deg) rotateY(${rotY}deg)`;
-        cardElement.style.setProperty('--overlay2', `rgba(255, 255, 255, ${totalBrightness})`);
+        cardElement.style.setProperty(cardData.Overlay1, `rgba(255, 255, 255, ${totalBrightness})`);
+        cardElement.style.setProperty(cardData.Overlay2, `rgba(255, 255, 255, ${totalBrightness})`);
     }
 
     // Mouse move event listener
@@ -100,8 +102,8 @@ function applyAnimation(cardElement, cardData) {
     cardElement.addEventListener("mouseout", function() {
         cardElement.style.transition = "transform 0.5s ease"; // Add transition for smooth snap back
         cardElement.style.transform = "rotateX(0deg) rotateY(0deg)"; // Reset rotation
-        cardElement.style.setProperty('--overlay2', cardData.overlay1); // Reset overlay1
-        cardElement.style.setProperty('--overlay-opacity2', cardData.overlayOpacity1); // Reset overlay1 opacity
+        cardElement.style.setProperty('--overlay1', cardData.overlay1); // Reset overlay1
+        cardElement.style.setProperty('--overlay-opacity1', cardData.overlayOpacity1); // Reset overlay1 opacity
     });
 }
 
