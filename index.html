@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <!-- Import header information -->
-  <script src="../js/meta-data.js" type="module"></script>
+  <script src="/js/meta-data.js" type="module"></script>
   <script>
     // Function to dynamically create meta tags
     function createMetaTags() {
@@ -52,7 +52,7 @@
   <link rel="stylesheet" href="css/styles.css">
 </head>
 <body><script type="module">
-  import { headerInfo } from '../js/meta-data.js';
+  import { headerInfo } from '/js/meta-data.js';
   document.addEventListener('DOMContentLoaded', function() {
     document.title = headerInfo.meta.og.title;
   });
