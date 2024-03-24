@@ -1,22 +1,62 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>The Realm's Holo Cards</title>
-  <link rel="stylesheet" href="styles.css">
+  <!-- Import header information -->
+  <script src="js/meta-data.js" type="module"></script>
+  <script>
+    // Function to dynamically create meta tags
+    function createMetaTags() {
+      const metaTags = Object.entries(headerInfo.meta).map(([name, content]) => {
+        if (typeof content === 'object') {
+          return Object.entries(content).map(([property, value]) => `<meta property="${name}:${property}" content="${value}" />`).join('\n');
+        } else {
+          return `<meta name="${name}" content="${content}" />`;
+        }
+      }).join('\n');
+      return metaTags;
+    }
+
+    // Function to dynamically create link tags
+    function createLinkTags() {
+      const linkTags = headerInfo.link.map(link => `<link rel="${link.rel}" href="${link.href}" />`).join('\n');
+      return linkTags;
+    }
+  </script>
+  
+  <!-- Base -->
+  <script>
+    document.write('<meta charset="' + headerInfo.meta.charset + '">');
+    document.write('<meta name="viewport" content="' + headerInfo.meta.viewport + '">');
+    document.write('<meta name="author" content="' + headerInfo.meta.author + '">');
+  </script>
+
+  <!-- META -->
+  <title>${headerInfo.meta.og.title}</title>
+  <script>
+    document.write('<meta name="description" content="' + headerInfo.meta.description + '">');
+    document.write('<link rel="canonical" href="' + headerInfo.meta.canonical + '">');
+    document.write('<link rel="icon" href="' + headerInfo.link.find(link => link.rel === 'icon').href + '">');
+    document.write(createMetaTags());
+  </script>
+
+	<!-- styles -->
+  <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
   <header>
-    <div class="banner">
-      <h1>The Realm's Holo Cards</h1>
-    </div>
+    <h1 id="pageTitle"></h1> <!-- Dynamically populated title -->
   </header>
+  
+  <!-- JavaScript to set page title dynamically -->
+  <script>
+    // Set the page title dynamically
+    document.getElementById('pageTitle').innerText = headerInfo.meta.og.title;
+  </script>
+  
   
   <main>
     <div id="app" class="card-container"></div>
     <button id="loadMoreBtn" style="display: none;">Load More</button>
-    
   </main>
   
 
@@ -25,7 +65,7 @@
   </footer>
 
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> <!-- Include jQuery library -->
-  <script src="cards.js" type="module"></script> <!-- Include your JavaScript file -->
+  <script src="/js/cards.js" type="module"></script> <!-- Include your JavaScript file -->
   <script>
     $(document).ready(function() {
       const cardsPerPage = 8;

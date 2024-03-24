@@ -5,20 +5,20 @@ const cardsData = [
         imgUrl: 'https://pokecardmaker.net/_next/image?url=https%3A%2F%2Fs3-eu-west-1.amazonaws.com%2Fawss3stack-pokecardmakernet2e60dd8b-m25pxfgr8cnl%2FEnvoyOfHell%2Fmewtwo-fz707ls%2Fcltj39bgg000q358dp10gh8sb.png&w=384&q=75',
         color1: '#fac',
         color2: '#ddccaa',
-        overlay1: 'url(https://assets.codepen.io/13471/holo.png)',
+        overlay1: 'url("https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/3c938f85-f834-4bb3-b3b2-97d295769464/ddlel40-8c1dfcfb-a614-4a47-a1dc-01ee32fd95c9.png?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7InBhdGgiOiJcL2ZcLzNjOTM4Zjg1LWY4MzQtNGJiMy1iM2IyLTk3ZDI5NTc2OTQ2NFwvZGRsZWw0MC04YzFkZmNmYi1hNjE0LTRhNDctYTFkYy0wMWVlMzJmZDk1YzkucG5nIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmZpbGUuZG93bmxvYWQiXX0.kvKOOwAgC9Aiihevik1HFy7dH2hCMSCT7Y9R7722IBw")',
         overlay2: 'url("https://assets.codepen.io/13471/sparkles.gif")',
-        overlayOpacity1: '40%',
-        overlayOpacity2: '20%'
+        overlayOpacity1: .5,
+        overlayOpacity2: .5
     },
     {
         name: 'Mew',
         imgUrl: 'https://pokecardmaker.net/_next/image?url=https%3A%2F%2Fs3-eu-west-1.amazonaws.com%2Fawss3stack-pokecardmakernet2e60dd8b-m25pxfgr8cnl%2FEnvoyOfHell%2Fmew-xgm08up%2Fcltj3b4xg000s358dey95cs20.png&w=750&q=75',
         color1: '#54a29e',
         color2: '#a79d66',
-        overlay1: 'url(https://assets.codepen.io/13471/holo.png)',
+        overlay1: 'url(https://craftcuttersupply.com/cdn/shop/products/holo_glitter_pink.jpg?v=1535979741)',
         overlay2: 'url("https://assets.codepen.io/13471/sparkles.gif")',
-        overlayOpacity1: '40%',
-        overlayOpacity2: '20%'
+        overlayOpacity1: .5,
+        overlayOpacity2: .5
     },
     {
         name: 'RayquazaEx',
